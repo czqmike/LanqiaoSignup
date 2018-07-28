@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>蓝桥杯大赛报名</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    body{
+      /* background-color:#000; */
+      background-image: url(bgpictrue.jpg);
+      background-size: 100%;
+      background-color: #8080c0;  /*图片未加载成功时的备用背景色*/
+    }
+  </style>
+  </head>
+  
+  <body>
+    <form>
+      <div class="container">
+        <br/>
+        <div class="jumbotron">
+          <!-- 用jumbotron整体包含这一行 -->
+          <div class="row">
+            <!-- 这一行分为3列，比例为3:5:4，只用比例为5的那部分,其余部分用来挤压排版 -->
+            <div class="col-md-3"></div> <!--不使用-->
+
+            <div class="col-md-5">
+              <h2 class="text-center">蓝桥杯大赛报名系统</h1>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">姓名</span>
+                <input type="text" class="form-control" placeholder="请输入姓名" aria-describedby="sizing-addon1" name="name" id="name" required>
+              </div>
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">学号</span>
+                <input type="text" class="form-control" placeholder="请输入学号" aria-describedby="sizing-addon1" name="student-no" id="student-no" required>
+              </div>
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">班级</span>
+                <select name="class" class="form-control input-md" name="class" id="class">
+                  <option>请选择班级</option>
+                  <option>计科</option>
+                  <option>软件</option>
+                  <option>物联</option>
+                  <option>电子</option>
+                  <option>其他</option>
+                </select>
+              </div>
+              <!--输入框版-->
+              <!-- <div class="input-group input-group-md"> -->  
+                <!-- <span class="input-group-addon">班级</span> -->
+                <!-- <input type="text" class="form-control" placeholder="请输入班级" aria-describedby="sizing-addon1"> -->
+                <!-- </div> -->
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">入学年份</span>
+                <select name="class" class="form-control input-md" name="report-year" id="report-year">
+                  <option>请选择入学年份</option>
+                  <option>2015</option>
+                  <option>2016</option>
+                  <option>2017</option>
+                  <option>2018</option>
+                </select>
+              </div>
+              <!--输入框版-->
+              <!-- <div class="input-group input-group-md"> 
+                <span class="input-group-addon">入学年份</span>
+                <input type="text" class="form-control" placeholder="请输入入学年份" aria-describedby="sizing-addon1">
+              </div> -->
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">邮箱</span>
+                <input type="text" class="form-control" placeholder="请输入邮箱" aria-describedby="sizing-addon1" name="email" id="email" required>
+              </div>
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">手机号码</span>
+                <input type="text" class="form-control" placeholder="请输入手机号码" aria-describedby="sizing-addon1" name="phone-number" id="phone-number" required>
+              </div>
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">密码</span>
+                <input type="password" class="form-control" placeholder="密码长度6-16位，包含数字与字母" aria-describedby="sizing-addon1" name="password" id="password" required>
+              </div>
+              <br/>
+              <div class="input-group input-group-md">
+                <span class="input-group-addon">重复密码</span>
+                <input type="password" class="form-control" placeholder="请再次输入密码" aria-describedby="sizing-addon1" name="rep-pwd" id="rep-pwd" required>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-md-8 col-xs-12">
+                  <div class="input-group input-group-md" style="margin-right: 0">
+                    <span class="input-group-addon">验证码</span>
+                    <input type="text" class="form-control" placeholder="请输入验证码" aria-describedby="sizing-addon1" name="captcha" id="captcha" required>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                  <button class="btn btn-success btn-md" style="width: 100%">  获取验证码  </button>
+                </div>
+              </div>
+              <br/>
+  
+              <button class="btn btn-primary  btn-block" type="submit">立即报名</button>
+            </div>
+
+            <div class="col-md-4"><p></p></div> <!--不使用-->
+
+          </div>
+          <hr/>
+          <footer class="text-center">
+            <p>powered by <a href="mailto:czqmike@foxmail.com?Subject=蓝桥杯大赛报名系统反馈">czqmike</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </footer>
+        </div>
+      </div>
+    </form>
+  </body>
+  
+  </html>
