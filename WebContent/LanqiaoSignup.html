@@ -11,16 +11,18 @@
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     body{
-      /* background-color:#000; */
-      background-image: url(https://raw.githubusercontent.com/czqmike/LanqiaoSignup/master/bgpictrue.jpg);
+      /* 优先使用本地的背景图片，如果未找到则使用外链加载图片 */
+      background-image: url('/image/bgpictrue.jpg'), url(https://raw.githubusercontent.com/czqmike/LanqiaoSignup/master/bgpictrue.jpg); 
+      /* background-image: url('/image/bgpictrue.jpg') ; /*需要设置虚拟路径（/image 对应磁盘上的 .../WebContent/image) */ 
       background-size: 100%;
+      
       background-color: #8080c0;  /*图片未加载成功时的备用背景色*/
     }
   </style>
   </head>
   
   <body>
-    <form>
+    <form action="GetSignInfo" method="POST">
       <div class="container">
         <br/>
         <div class="jumbotron">
