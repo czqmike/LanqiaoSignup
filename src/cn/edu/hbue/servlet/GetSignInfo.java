@@ -1,6 +1,7 @@
 package cn.edu.hbue.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author czqmike
- * @time 2018年7月29日下午1:11:41
- * @name GetSignInfo
- * @descriptionp 接收经过校验的用户信息。
+ * @date 2018年7月29日
+ * @description 接收用户提交的表单信息。
  */
 @WebServlet("/GetSignInfo")
 public class GetSignInfo extends HttpServlet {
@@ -36,9 +36,12 @@ public class GetSignInfo extends HttpServlet {
 
 		Enumeration<String> paraNames = request.getParameterNames();
 		while (paraNames.hasMoreElements()) {
-			String info = new String(request.getParameter("name").getBytes("ISO8859-1"),"UTF-8");
-			System.out.println(info);
+			String name = paraNames.nextElement();
+			String info = new String(request.getParameter(name).getBytes("ISO8859-1"),"UTF-8");
+			System.out.println(name + " = " + info);
 		}
+		PrintWriter out = response.getWriter();
+		out.println("<h1>恭喜，信息已提交！注册完成后会在第一时间以邮件方式通知你(*^_^*)</h1>");
 	}
 
 	/**
