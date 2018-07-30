@@ -2,6 +2,7 @@ package cn.edu.hbue.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cn.edu.hbue.dao.Lq_submitted;
+import cn.edu.hbue.model.Submit;
 
 /**
  * @author czqmike
@@ -31,17 +35,39 @@ public class GetSignInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-
-		Enumeration<String> paraNames = request.getParameterNames();
-		while (paraNames.hasMoreElements()) {
-			String name = paraNames.nextElement();
-			String info = new String(request.getParameter(name).getBytes("ISO8859-1"),"UTF-8");
-			System.out.println(name + " = " + info);
-		}
 		PrintWriter out = response.getWriter();
-		out.println("<h1>恭喜，信息已提交！注册完成后会在第一时间以邮件方式通知你(*^_^*)</h1>");
+
+		// 通过getParameter来测试用户点击的是 [get-captcha] 还是 [sign-up]]
+		String isGetCaptcha = request.getParameter("get-captcha");
+		
+		if (isGetCaptcha != null) { //用户点击了获取验证码按钮
+			//  接收表单传来的各项数据并且push进ArrayList
+			ArrayList<String> paraOfSubmit = new ArrayList<String>();
+			Enumeration<String> paraNames = request.getParameterNames();
+			while (paraNames.hasMoreElements()) {
+				String name = paraNames.nextElement();
+				paraOfSubmit.add(new String(request.getParameter(name).getBytes("ISO8859-1"),"UTF-8"));
+			}
+			//  构造Submit，方便插入
+			Submit submit = new Submit(paraOfSubmit);
+	
+			// test data
+//			PrintWriter out = response.getWriter();
+//			paraNames = request.getParameterNames();
+//			while (paraNames.hasMoreElements()) {
+//				String name = paraNames.nextElement();
+//				String para = new String(request.getParameter(name).getBytes("ISO8859-1"),"UTF-8");
+//				out.println("<h1>" + name + " = " + para + "</h1>");
+//			}
+			Lq_submitted.insert(submit);
+			out.println("<h1>请查收验证码(*^_^*)</h1>");
+		} else { // 用户点击了注册按钮
+			String captcha = request.getParameter("captcha");
+			// TODO: 修改表中student_no为当前学生的captcha
+
+			out.println("<h1>恭喜，信息已提交！注册完成后会在第一时间以邮件方式通知你(*^_^*)</h1>");
+		}
 	}
 
 	/**
@@ -51,5 +77,5 @@ public class GetSignInfo extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
+
 }
