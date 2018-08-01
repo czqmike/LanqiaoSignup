@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,8 +61,15 @@ public class GetSignInfo extends HttpServlet {
 //				String para = new String(request.getParameter(name).getBytes("ISO8859-1"),"UTF-8");
 //				out.println("<h1>" + name + " = " + para + "</h1>");
 //			}
-			Lq_submitted.insert(submit);
-			out.println("<h1>请查收验证码(*^_^*)</h1>");
+			boolean ok = Lq_submitted.insert(submit);
+
+			if (ok) {
+				out.println("<h1>请查收验证码(*^_^*), 3秒后跳转</h1>");
+			} else {
+				out.println("<h1>插入数据失败！ </h1>");
+			}
+			//3秒后跳转到注册页面
+			response.setHeader("refresh","3;/LanqiaoSignup/LanqiaoSignup.html"); 
 		} else { // 用户点击了注册按钮
 			String captcha = request.getParameter("captcha");
 			// TODO: 修改表中student_no为当前学生的captcha

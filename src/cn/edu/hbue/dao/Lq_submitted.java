@@ -40,4 +40,30 @@ public class Lq_submitted {
 		
 		return done;
 	}
+	
+	//查询给定的student_no在Lq_submitted中的数量，用于注册时校检学号是否已被注册
+	//异常时返回-1
+	public static int numOfStudentNo(String student_no) {
+		Connection conn = JDBCUtil.getConn();
+		 
+		int num = -1;
+		PreparedStatement stmt = null;
+		String sql = "select count(*) from lqsignupdb.lq_submitted where student_no = ?";
+		try {
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, student_no);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+//			rs.next(); 		//移动RS指针从第1行之前到第一行
+			num = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.closeConn(stmt, conn);
+		}
+		
+		return num;
+	}
 }
